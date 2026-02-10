@@ -57,11 +57,11 @@ def read_from_csv(csv_name):
 def Gabor_filter_data():
     kernel_size = 11
     sigmas = [1.5]
-    lambdas = [4, 8]    # scales
+    lambdas = [4, 8, 12]    # scales
     thetas = [k * np.pi / 8 for k in range(8)] # orientations
     gamma = 0.5
     psi = 0
-    # There will be 1(sigmas)*2(lambdas)*8(thetas) = 1*3*8 = 16 kernels
+    # There will be 1(sigmas)*2(lambdas)*8(thetas) = 1*3*8 = 24 kernels
     no_of_filters = len(sigmas)*len(lambdas)*len(thetas)
     return kernel_size,sigmas,lambdas,thetas,gamma,psi,no_of_filters
 
