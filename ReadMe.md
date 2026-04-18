@@ -31,10 +31,10 @@ Each input image is convolved with every filter in the bank, producing 'N' featu
 Features are L2-normalised and fed into Linear Support Vector Machine (SVM). The dataset's original train/test split (80% training, 20% testing) is used throughout the experiments.
 
 ## Results
-See ![RESULTS.md](Results.md) for detailed evaluation.
+See [RESULTS.md](Results.md) for detailed evaluation.
 
 ## How to Run
-**Prerequisites** Refer to ![requirements](requirements.txt) to ensure all dependencies are installed.
+**Prerequisites** Refer to [requirements](requirements.txt) to ensure all dependencies are installed.
 1. Download the CK+ dataset
 2. Place it inside the src folder
 3. Run src/Gabor_Outputs_generation.py (This will generate a file named outputs_ck.npy inside data folder)
