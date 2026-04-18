@@ -57,16 +57,16 @@ def find_classification_ready_features(outputs):
 
 def main():
     # Extracting the saved outputs
-    if csv_name == "data\\fer2013.csv":
-        outputs = np.load("data\\outputs_fer.npy")
-    elif csv_name == "data\\ckextended.csv":
-        outputs = np.load("data\\outputs_ck.npy")
+    if csv_name == "src\\data\\fer2013.csv":
+        outputs = np.load("src\\data\\outputs_fer.npy")
+    elif csv_name == "src\\data\\ckextended.csv":
+        outputs = np.load("src\\data\\outputs_ck.npy")
     print(f"The outputs shape is = {outputs.shape}.(No. of input images * no. of Filters/outputs * output ht * output wd)")
     imgwise_blockmeans = find_classification_ready_features(outputs)
-    if csv_name == "data\\fer2013.csv":
-        np.save("data\\imgwise_blockmeans_fer.npy",imgwise_blockmeans)
-    elif csv_name == "data\\ckextended.csv":
-        np.save("data\\imgwise_blockmeans_ck.npy",imgwise_blockmeans)
+    if csv_name == "src\\data\\fer2013.csv":
+        np.save("src\\data\\imgwise_blockmeans_fer.npy",imgwise_blockmeans)
+    elif csv_name == "src\\data\\ckextended.csv":
+        np.save("src\\data\\imgwise_blockmeans_ck.npy",imgwise_blockmeans)
     print("Image wise Block Statistics Successfully Saved")                                                                                                                                                                                                               
 
 if __name__ == '__main__':

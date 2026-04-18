@@ -1,11 +1,12 @@
 import numpy as np
 import pandas as pd
 import math
+import matplotlib.pyplot as plt
 
 # Here we are just fetching the input images, applying Gabor filter to each input images
 # Then saving the outputs.
 
-csv_name = "data\\ckextended.csv"
+csv_name = "src\\data\\ckextended.csv"
 
 def filter_def(size,lamb,gamma,sigma,psi,theta): 
 # lamb -> wavelength; gamma -> ellipticity ; sigma -> gaussian std deviation ; psi -> phase ; theta -> angle
@@ -42,9 +43,9 @@ def read_from_csv(csv_name):
     df = pd.read_csv(csv_name)
     #print(df)
     classes_list = df['emotion']
-    if csv_name == "data\\fer2013.csv":
+    if csv_name == "src\\data\\fer2013.csv":
         classes_names = ['anger','disgust','fear','happiness','sadness','surprise','neutral']
-    elif csv_name == "data\\ckextended.csv":
+    elif csv_name == "src\\data\\ckextended.csv":
         classes_names = ['anger','disgust','fear','happiness','sadness','surprise','neutral','contempt']                
     img_arrays = df['pixels']
     # print(type(img_arrays[0]))   # ---->  returns a str
@@ -56,12 +57,12 @@ def read_from_csv(csv_name):
 
 def Gabor_filter_data():
     kernel_size = 11
-    sigmas = [1.5]
-    lambdas = [4, 8, 12]    # scales
+    sigmas = [1.5]  # scales
+    lambdas = [4,8]    # wavelengths
     thetas = [k * np.pi / 8 for k in range(8)] # orientations
     gamma = 0.5
     psi = 0
-    # There will be 1(sigmas)*2(lambdas)*8(thetas) = 1*3*8 = 24 kernels
+    # There will be 1(sigmas)*2(lambdas)*8(thetas) = 1*2*8 = 16 kernels
     no_of_filters = len(sigmas)*len(lambdas)*len(thetas)
     return kernel_size,sigmas,lambdas,thetas,gamma,psi,no_of_filters
 
@@ -81,30 +82,40 @@ def main():
 
     imgs_list = np.array(imgs_list)
     print(f"Input images array's shape = {imgs_list.shape}") # 920 images of shape 48*48. So 920*48*48
-    ################################ Applying Gabor Filter  
+    ###################################### Applying Gabor Filter ###################################### 
     kernel_size,sigmas,lambdas,thetas,gamma,psi,no_of_filters = Gabor_filter_data()
     kernels = []
-    for s in sigmas:
-        for l in lambdas:
-            for t in thetas:
-                kernel = filter_def(size=kernel_size,lamb=l,gamma=gamma,sigma=s,psi=psi,theta=t)
+    visual_kernels = np.ndarray((len(sigmas),len(lambdas),len(thetas),kernel_size,kernel_size),dtype=float)   # Will be used for visualising kernels
+    for i in range(len(sigmas)):
+        for j in range(len(lambdas)):
+            for k in range(len(thetas)):
+                kernel = filter_def(size=kernel_size,lamb=lambdas[j],gamma=gamma,sigma=sigmas[i],psi=psi,theta=thetas[k])
                 # Remove the DC bias from kernel
                 kernel -= kernel.mean()
                 # Normalise the kernel to unit energy. 
                 kernel /= (np.linalg.norm(kernel) + 1e-6)
-                # See different lambdas,sigmas can give different responses in terms of energy
+                # Different lambdas,sigmas can give different responses in terms of energy
                 # Large sigma,Large lambda filters may give large response value and so classifier may think these filters are more important
                 # when in reality, they’re just numerically larger.
 
                 # After normalization:  1) A strong response means image matches that frequency/orientation
-                #Not “this filter just has higher amplitude”
+                # Not “this filter just has higher amplitude”
 
                 kernels.append(kernel)
+                visual_kernels[i][j][k] = kernel
                 
-    # Gabor Filter Bank Visualisation (Continuously press "enter" key to see all the filters)
-    # for kernel in kernels:
-    #     cv2.imshow("K",kernel)
-    #     cv2.waitKey(0)
+    # # Gabor Filter Bank Visualisation  (uncomment to see the kernels)
+    # for i in range(len(sigmas)):
+    #     for j in range(len(lambdas)):
+    #         fig,ax = plt.subplots(1,len(thetas))
+    #         for k in range(len(thetas)):
+    #             ax[k].imshow(visual_kernels[i,j,k],cmap='gray')
+    #             ax[k].set_title(f"Theta={thetas[k]:.3f}")
+    #             ax[k].axis("off")
+    #         plt.suptitle(f"Kernels for sigma={sigmas[i]} and lambda={lambdas[j]}")
+    #         plt.tight_layout()
+    #         plt.show()
+
 
     # Apply the filters
     outputs = []
@@ -119,9 +130,9 @@ def main():
 
     print(f"Output shape - {outputs.shape}")
     if csv_name == "data\\fer2013.csv":
-        np.save("data\\outputs_fer.npy",outputs)
-    elif csv_name == "data\\ckextended.csv":
-        np.save("data\\outputs_ck.npy",outputs)
+        np.save("src\\data\\outputs_fer.npy",outputs)
+    elif csv_name == "src\\data\\ckextended.csv":
+        np.save("src\\data\\outputs_ck.npy",outputs)
     print("Gabor Filter Outputs Successfully Saved")
 
 if __name__ == "__main__":

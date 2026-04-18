@@ -2,7 +2,10 @@ from Gabor_Outputs_generation import read_from_csv,csv_name
 from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
 import numpy as np
-from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.metrics import confusion_matrix, classification_report,ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
 
 # In this file, we use the previously saved features and create the train-test split and apply the SVM
 def main():
@@ -11,11 +14,12 @@ def main():
 
     phase = usage.values # phase means either training or testing phase
     labels = classes_list.values
-    # print(labels)
-    if csv_name == "data\\fer2013.csv":
-        imgwise_blockmeans = np.load("data\\imgwise_blockmeans_fer.npy")
-    elif csv_name == "data\\ckextended.csv":
-        imgwise_blockmeans = np.load("data\\imgwise_blockmeans_ck.npy")
+    print(labels)
+    
+    if csv_name == "src\\data\\fer2013.csv":
+        imgwise_blockmeans = np.load("src\\data\\imgwise_blockmeans_fer.npy")
+    elif csv_name == "src\\data\\ckextended.csv":
+        imgwise_blockmeans = np.load("src\\data\\imgwise_blockmeans_ck.npy")
     # Break the dataset in train and test
     X_train = []
     X_test = []
@@ -44,7 +48,7 @@ def main():
     # Hence we "fit" on the training data and not on testing data. On the testing data we simply normalise using those mean and variance.
     X_test  = scaler.transform(X_test)
 
-    ######################################### Classification Time 
+    ######################################### The Actual Classification ######################################### 
 
     #svm = SVC(kernel='rbf', C=10 , gamma='scale')
     svm = SVC(kernel='linear',C=1)
@@ -54,8 +58,30 @@ def main():
     print("Accuracy:", accuracy)
 
     y_pred = svm.predict(X_test)
-    print(f"Confusion Matrix :\n {confusion_matrix(labels_test, y_pred)}")
-    print(f"Classification Report :\n {classification_report(labels_test, y_pred)}")
+    cm = confusion_matrix(labels_test, y_pred)
+    print(f"Confusion Matrix :\n {cm}")
+
+
+    plt.figure(figsize=(8,6))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+            xticklabels=classes_names,
+            yticklabels=classes_names)
+
+    plt.xlabel('Predicted Labels')
+    plt.ylabel('True Labels')
+    plt.title('Confusion Matrix')
+    plt.show()
+
+    cr = classification_report(labels_test, y_pred,output_dict=True)
+    print(f"Classification Report :\n {cr}")
+    cr_df = pd.DataFrame(cr).transpose()
+
+    plt.figure(figsize=(8,6))
+    sns.heatmap(cr_df.iloc[:-1, :-1], annot=True, cmap='Blues')
+
+    plt.title('Classification Report')
+    plt.show()
+        
 
 if __name__ == "__main__":
     main()
