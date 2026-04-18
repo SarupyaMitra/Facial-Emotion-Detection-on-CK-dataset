@@ -16,12 +16,12 @@ Full dataset descriptions are available at the links above.
 A bank of Gabor Filters is constructed with multiple orientations and spatial frequencies. Each filter captures texture and edge informations at a specific orientation and scales, which makes the filter bank well-suited for encoding localised facial changes associated with distinct emotional expressions.
 
 Example of Gabor Filter Bank:
-![Kernel1](Images\Gabor_Bank\Kernel1.png)
-![Kernel2](Images\Gabor_Bank\Kernel2.png)
-![Kernel3](Images\Gabor_Bank\Kernel3.png)
-![Kernel4](Images\Gabor_Bank\Kernel4.png)
-![Kernel5](Images\Gabor_Bank\Kernel5.png)
-![Kernel6](Images\Gabor_Bank\Kernel6.png)
+![Kernel1](Images/Gabor_Bank/Kernel1.png)
+![Kernel2](Images/Gabor_Bank/Kernel2.png)
+![Kernel3](Images/Gabor_Bank/Kernel3.png)
+![Kernel4](Images/Gabor_Bank/Kernel4.png)
+![Kernel5](Images/Gabor_Bank/Kernel5.png)
+![Kernel6](Images/Gabor_Bank/Kernel6.png)
 
 ### Feature Extraction
 Each input image is convolved with every filter in the bank, producing 'N' feature maps per image. Each feature map is then partitioned into 4*4=16 non-overlapping blocks and a statistical descriptor (e.g. mean) is computed per block. So the final feature vector for a single image is of "N × 16"; where N is the total number of kernels in the bank and it is computed as  N = (no. of different scales)×(no of different wavelengths)×(no of different orientations).

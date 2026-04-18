@@ -19,11 +19,11 @@ In each experiment the same 8 orientations were used:
 
 Confusion Matrix :
 
-![Confusion_Matrix](Images\ConfusionMatrices\ConfusionMatrix_case1.png)
+![Confusion_Matrix](Images/ConfusionMatrices/ConfusionMatrix_case1.png)
 
 Classification Report :
 
-![Classification_Report](Images\ClassificationReport\ClassificationReport_case1.png)
+![Classification_Report](Images/ClassificationReport/ClassificationReport_case1.png)
 
 
 
@@ -31,11 +31,11 @@ Classification Report :
 
 Confusion Matrix :
 
-![Confusion_Matrix](Images\ConfusionMatrices\ConfusionMatrix_case2.png)
+![Confusion_Matrix](Images/ConfusionMatrices/ConfusionMatrix_case2.png)
 
 Classification Report :
 
-![Classification_Report](Images\ClassificationReport\ClassificationReport_case2.png)
+![Classification_Report](Images/ClassificationReport/ClassificationReport_case2.png)
 
 
 
@@ -43,22 +43,22 @@ Classification Report :
 
 Confusion Matrix :
 
-![Confusion_Matrix](Images\ConfusionMatrices\ConfusionMatrix_case3.png)
+![Confusion_Matrix](Images/ConfusionMatrices/ConfusionMatrix_case3.png)
 
 Classification Report :
 
-![Classification_Report](Images\ClassificationReport\ClassificationReport_case3.png)
+![Classification_Report](Images/ClassificationReport/ClassificationReport_case3.png)
 
 
 ## Experiment 4 - scale(sigma) = 2.5 , wavelength(lambda) = 4: 
 
 Confusion Matrix :
 
-![Confusion_Matrix](Images\ConfusionMatrices\ConfusionMatrix_case4.png)
+![Confusion_Matrix](Images/ConfusionMatrices/ConfusionMatrix_case4.png)
 
 Classification Report :
 
-![Classification_Report](Images\ClassificationReport\ClassificationReport_case4.png)
+![Classification_Report](Images/ClassificationReport/ClassificationReport_case4.png)
 
 
 
@@ -66,11 +66,11 @@ Classification Report :
 
 Confusion Matrix :
 
-![Confusion_Matrix](Images\ConfusionMatrices\ConfusionMatrix_case5.png)
+![Confusion_Matrix](Images/ConfusionMatrices/ConfusionMatrix_case5.png)
 
 Classification Report :
 
-![Classification_Report](Images\ClassificationReport\ClassificationReport_case5.png)
+![Classification_Report](Images/ClassificationReport/ClassificationReport_case5.png)
 
 
 
@@ -78,20 +78,20 @@ Classification Report :
 
 Confusion Matrix :
 
-![Confusion_Matrix](Images\ConfusionMatrices\ConfusionMatrix_case6.png)
+![Confusion_Matrix](Images/ConfusionMatrices/ConfusionMatrix_case6.png)
 
 Classification Report :
 
-![Classification_Report](Images\ClassificationReport\ClassificationReport_case6.png)
+![Classification_Report](Images/ClassificationReport/ClassificationReport_case6.png)
 
 ## Experiment 7 - scale(sigma) = 1.5 , wavelengths(lambdas) = 4,8
 
 Confusion Matrix:
 
-![Confusion_Matrix](Images\ConfusionMatrices\ConfusionMatrix_case7.png)
+![Confusion_Matrix](Images/ConfusionMatrices/ConfusionMatrix_case7.png)
 
 Classification Report :
 
-![Classification_Report](Images\ClassificationReport\ClassificationReport_case7.png)
+![Classification_Report](Images/ClassificationReport/ClassificationReport_case7.png)
 
 
