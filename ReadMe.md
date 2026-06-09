@@ -5,9 +5,7 @@ This project implements facial emotion recognition on the CK+ dataset using Gabo
 ## Dataset:
 CK+(Extended Cohn Kanade) Dataset is found from https://www.kaggle.com/datasets/davilsena/ckdataset. 
 
-Fer2013 Dataset is found from https://www.kaggle.com/datasets/msambare/fer2013.
-
-Full dataset descriptions are available at the links above. 
+Full dataset description is available at the link above. 
 
 
 ## Methodology

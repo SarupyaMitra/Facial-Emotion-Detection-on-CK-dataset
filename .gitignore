@@ -1,3 +1,4 @@
 *.npy
 *.csv
 __pycache__/
+Personal_Readme.md
